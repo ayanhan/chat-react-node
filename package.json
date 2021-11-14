@@ -2,12 +2,13 @@
   "name": "chat-react-node",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8888", 
+  "proxy": "http://localhost:8888",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "express": "^4.17.1",
+    "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -20,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "node server.js"
+    "server": "nodemon server.js"
   },
   "eslintConfig": {
     "extends": [

@@ -9,12 +9,24 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
+app.use(express.json());
 
 const rooms = new Map();
 
-app.get('/users', function(req,res){
+app.get('/rooms', function(req,res){
     res.json(rooms);
 });
+
+app.post('/rooms', function(req, res){
+  const {roomId, userName} = req.body;
+  if (!rooms.has(rooms)) {
+    rooms.set(roomId, new Map([
+      ['users', new Map()],
+      ['messages', []],
+    ]));
+  } 
+  res.send()
+})
 
 io.on("connection", socket => {
     console.log("socket connected", socket.id)
