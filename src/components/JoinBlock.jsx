@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import socket from "../socket";
 
-const JoinBlock = () => {
+const JoinBlock = ({onLogin}) => {
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const onEnter = () => {
+  const onEnter = async () => {
     if (!roomId || !userName) {
       return alert("Please fill all fields");
     }
-    axios.post("/rooms", {
+    setLoading(true)
+    const obj = {
       roomId,
       userName,
-    })
-    // socket.emit("join", { roomId, userName });
+    }
+    await axios.post("/rooms", obj);
+    onLogin(obj)
   }
 
   return (
@@ -31,7 +34,7 @@ const JoinBlock = () => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      <button onClick={onEnter} className="btn btn-success"> Enter </button>
+      <button disabled={loading} onClick={onEnter} className="btn btn-success"> Enter </button>
     </div>
   );
 };
